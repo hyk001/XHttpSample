@@ -4,7 +4,7 @@ import com.android.anqiansong.response.ErrorInfo;
 
 /**
  * 字符串解析后回调</br>
- * XHttp作者博客:<a href="http://blog.csdn.net/qq243223991">安前松博客</a></br>
+ * <a href="http://blog.csdn.net/qq243223991">安前松博客</a>
  */
 
 public abstract class Callback<T> {

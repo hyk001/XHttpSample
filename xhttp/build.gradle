@@ -35,15 +35,15 @@ dependencies {
 }
 
 // 发布到jcenter
-def siteUrl = 'https://github.com/anqiansong/X-PluginsExample'      // 项目的主页
-def gitUrl = 'https://github.com/anqiansong/X-PluginsExample.git'   // Git仓库的url
-group = "com.android.anqiansong.x_plugins"
+def siteUrl = 'https://github.com/anqiansong/XHttpSample'      // 项目的主页
+def gitUrl = 'https://github.com/anqiansong/XHttpSample.git'   // Git仓库的url
+group = "com.android.anqiansong"
 install {
     repositories.mavenInstaller {
         pom {
             project {
                 packaging 'aar'
-                name 'x-plugins'
+                name 'xhttp'
                 url siteUrl
                 licenses {
                     license {
@@ -91,7 +91,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "Xplugins"    //发布到JCenter上的项目名字
+        name = "XHttp"    //发布到JCenter上的项目名字
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]

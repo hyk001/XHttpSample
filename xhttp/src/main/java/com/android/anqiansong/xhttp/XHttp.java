@@ -44,8 +44,8 @@ import okhttp3.Response;
  * 特别注意:</br>
  * 在接口回调时,根据您需要的类型指定泛型,如请求Bitmap,则需要在Callback<T>T应指定为Bitmap</br>
  * 请求String,则需要在Callback<T>T应指定为String,请求解析后的实体类,则需要在Callback<T>T应指定为待解析的JavaBean</br>
- * <a href="https://github.com/jeasonlzy/okhttp-OkGo">OKGo</a></br>
- * XHttp作者博客:<a href="http://blog.csdn.net/qq243223991">安前松博客</a></br>
+ * <a href="https://github.com/jeasonlzy/okhttp-OkGo">OKGo</a>
+ * <a href="http://blog.csdn.net/qq243223991">安前松博客</a>
  */
 
 public class XHttp {

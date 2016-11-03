@@ -2,6 +2,7 @@ package com.android.anqiansong.response;
 
 /**
  * 错误信息载体
+ * <a href="http://blog.csdn.net/qq243223991">安前松博客</a>
  */
 
 public class ErrorInfo {

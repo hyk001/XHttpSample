@@ -11,7 +11,7 @@ import java.lang.reflect.WildcardType;
 
 /**
  * 主题:获取泛型<br>
- * XHttp作者博客:<a href="http://blog.csdn.net/qq243223991">安前松博客</a></br>
+ * <a href="http://blog.csdn.net/qq243223991">安前松博客</a>
  */
 public class TypeTake {
 
