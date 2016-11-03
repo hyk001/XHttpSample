@@ -14,7 +14,7 @@ public class UApplication extends Application {
     }
 }
 </pre>
-#2.根据需要进行参数配置, 
+#2.根据需要进行参数配置 
 <pre>
 注意 :此过程尽量在Appcation中进行设置
 设置超时时间
