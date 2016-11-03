@@ -3,7 +3,7 @@ package com.android.anqiansong.callback;
 import com.android.anqiansong.response.ErrorInfo;
 
 /**
- * 字符串解析后回调</br>
+ * 字符串解析后回调<br>
  * <a href="http://blog.csdn.net/qq243223991">安前松博客</a>
  */
 

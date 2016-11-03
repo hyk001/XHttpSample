@@ -35,15 +35,15 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 /**
- * XHttp--轻量级的网络工具请求类,基于OkGo封装的一个实用性的网络工具请求类</br>
- * 此工具可能好与低版本的OKHttp有冲突</br>
- * 本工具中采用的是fastjson 1.2.9版本解析,因此在依赖过程中请勿多次引用fastjson</br>
- * 网络唯一标识是以Activity为单位的,如果需要控制网络请求与取消,可以在Activity调用</br>
- * onCreate(...)和onDestroy(...)时调用{@link #onCreate(Activity)}和{@link #onDestroy(Activity)}</br>
- * 方法即可.</br>
- * 特别注意:</br>
- * 在接口回调时,根据您需要的类型指定泛型,如请求Bitmap,则需要在Callback<T>T应指定为Bitmap</br>
- * 请求String,则需要在Callback<T>T应指定为String,请求解析后的实体类,则需要在Callback<T>T应指定为待解析的JavaBean</br>
+ * XHttp--轻量级的网络工具请求类,基于OkGo封装的一个实用性的网络工具请求类<br>
+ * 此工具可能好与低版本的OKHttp有冲突<br>
+ * 本工具中采用的是fastjson 1.2.9版本解析,因此在依赖过程中请勿多次引用fastjson<br>
+ * 网络唯一标识是以Activity为单位的,如果需要控制网络请求与取消,可以在Activity调用<br>
+ * onCreate(...)和onDestroy(...)时调用{@link #onCreate(Activity)}和{@link #onDestroy(Activity)}<br>
+ * 方法即可.<br>
+ * 特别注意:<br>
+ * 在接口回调时,根据您需要的类型指定泛型,如请求Bitmap,则需要在Callback T应指定为Bitmap<br>
+ * 请求String,则需要在Callback T应指定为String,请求解析后的实体类,则需要在Callback T应指定为待解析的JavaBean<br>
  * <a href="https://github.com/jeasonlzy/okhttp-OkGo">OKGo</a>
  * <a href="http://blog.csdn.net/qq243223991">安前松博客</a>
  */
@@ -93,8 +93,7 @@ public class XHttp {
     /**
      * 是否需要开启缓存
      *
-     * @param cache 如果开启缓存,则优先先使用缓存，不管是否存在缓存，仍然请求网络</br>
-     *              如果需要设置缓存模式,请查看{@link #setCacheMode(CacheMode)}</br>
+     * @param cache 如果开启缓存,则优先先使用缓存，不管是否存在缓存，仍然请求网络<br>
      */
     public static void setCache(boolean cache) {
         if (!isInit()) return;
@@ -103,7 +102,7 @@ public class XHttp {
     }
 
     /**
-     * @param cacheMode 设置缓存模式,不需要设置setCache(true),更多缓存模式请查看{@link CacheMode}
+     * @param cacheMode 设置缓存模式,不需要设置setCache(true),更多缓存模式请查看CacheModel
      */
     public static void setCacheMode(CacheMode cacheMode) {
         if (!isInit()) return;
