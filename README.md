@@ -261,3 +261,28 @@ XHttp.download(xDownloadFile,"/SD/download","meituan.apk", new Callback&lt;Strin
     }
 });
 </pre>
+#其他注意事项
+在activity中执行onCreate(...) 和 onDestroy(...)时,如果需要增加网络唯一请求标识,以便每个activity在 销毁时取消网络请求减小app负担,建议调用对应的方法.实例:
+<pre>
+public class MainActivity extends Activity{
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+    }
+    
+    
+    .........
+    
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        XHttp.onDestroy(this);
+    }
+}
+</pre>
+#后序
+感谢<h2>jeasonlzy</h2>
+引自:<a href="https://github.com/jeasonlzy/okhttp-OkGo">jeasonlzy github地址</a>
