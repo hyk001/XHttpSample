@@ -218,14 +218,13 @@ public class XHttp {
      * @param destFileDir  存储路径
      * @param destFileName 存储文件名
      * @param callback
-     * @param tag
      */
-    public static void download(XBase xBase, String destFileDir, String destFileName, Callback callback, Object tag) {
+    public static void download(XBase xBase, String destFileDir, String destFileName, Callback callback) {
         try {
             if (!isInit()) return;
 
             if (xBase instanceof XUploadFile) {// 下载文件
-                downloadFile(xBase, destFileDir, destFileName, callback, tag);
+                downloadFile(xBase, destFileDir, destFileName, callback, tagActivity);
                 return;
             }
             try {
