@@ -82,7 +82,7 @@ public class UApplication extends Application {
  setCertificates(InputStream)
  注:如果每个请求的header不一样,亦可以单独设置header,如:
  XGet xGet = new XGet();
- xGet.requestUrl = Constant.JOKE_URL;
+ xGet.requestUrl = Constant.JOKE_URL; // 请求地址
  HashMap&lt;String, String&gt; headers = new HashMap&lt;&gt;();
  headers.put("apikey", Constant.APP_KEY);
  xGet.requestHeaders = headers;
@@ -99,7 +99,7 @@ public class UApplication extends Application {
 </h5>
 <pre>
  XGet xGet = new XGet();
- xGet.requestUrl = Constant.JOKE_URL;
+ xGet.requestUrl = Constant.JOKE_URL;// 请求地址
  // 根据需要配置请求参数和headers
  // xGet.requestString = "?page=1";
  // HashMap&lt;String, String&gt; headers = new HashMap&lt;&gt;();
@@ -117,7 +117,7 @@ public class UApplication extends Application {
 </h5>
 <pre>
 XBitmap xBitmap = new XBitmap();
-xBitmap.requestUrl = Constant.PIC;
+xBitmap.requestUrl = Constant.PIC; // 请求地址
 // 根据需要配置请求参数和headers
 // xGet.requestString = "?page=1";
 // HashMap&lt;String, String&gt; headers = new HashMap&lt;&gt;();
@@ -135,7 +135,7 @@ XHttp.request(xBitmap, new Callback&lt;Bitmap&gt;() {// 泛型需要指定为Bit
 </h5>
 <pre>
  XGet xGet = new XGet();
- xGet.requestUrl = Constant.JOKE_URL;
+ xGet.requestUrl = Constant.JOKE_URL; // 请求地址
  // 根据需要配置请求参数和headers
  // xGet.requestString = "?page=1";
  // HashMap&lt;String, String&gt; headers = new HashMap&lt;&gt;();
@@ -154,7 +154,7 @@ XHttp.request(xBitmap, new Callback&lt;Bitmap&gt;() {// 泛型需要指定为Bit
 </h5>
 <pre>
 XPost xPost = new XPost();
-xPost.requestUrl = Constant.JOKE_URL;
+xPost.requestUrl = Constant.JOKE_URL;// 请求地址
 // 根据需要配置
 // HashMap&lt;String,String&gt; headers = new HashMap&lt;&gt;();
 // headers.put("apikey", Constant.APP_KEY);
@@ -174,7 +174,7 @@ Post请求,上传json数据
 </h5>
 <pre>
 XPostJson xPost = new XPostJson();
-xPost.requestUrl = Constant.JOKE_URL;
+xPost.requestUrl = Constant.JOKE_URL;// 上传地址
 // 根据需要配置
 // HashMap&lt;String,String&gt; headers = new HashMap&lt;&gt;();
 // headers.put("apikey", Constant.APP_KEY);
@@ -195,7 +195,7 @@ Post请求,上传String数据
 </h5>
 <pre>
 XPostString xPost = new XPostString();
-xPost.requestUrl = Constant.JOKE_URL;
+xPost.requestUrl = Constant.JOKE_URL;//  上传地址
 // 根据需要配置
 // HashMap&lt;String,String&gt; headers = new HashMap&lt;&gt;();
 // headers.put("apikey", Constant.APP_KEY);
@@ -214,10 +214,14 @@ XHttp.request(xPost, new Callback&lt;String&gt;() {// 可以根据需要直接�
 说明:支持多文件上传,需要重写onUploadProgress方法
 <pre>
 XUploadFile xUploadFile = new XUploadFile();
+xUploadFile.requestUrl = Constant.JOKE_URL;//  上传地址
 // 根据需要配置
 // HashMap&lt;String,String&gt; headers = new HashMap&lt;&gt;();
 // headers.put("apikey", Constant.APP_KEY);
-// xPost.requestHeaders = headers;
+// xUploadFile.requestHeaders = headers;
+// HashMap&lt;String,Object&gt; params = new HashMap&lt;&gt;();
+// params.put("page",1);
+// xUploadFile.params = params;
 File file = getFile();// 选择文件
 List&lt;File&gt; files = new ArrayList&lt;&gt;();
 files.add(file);
@@ -236,3 +240,24 @@ XHttp.request(xUploadFile, new Callback&lt;String&gt;() {
 });
 </pre>
 #6.下载文件
+注:如果需要查看下载进度务必要重写onDownloadProgress方法
+<pre>
+XDownloadFile xDownloadFile = new XDownloadFile();
+xDownloadFile.requestUrl = Constant.JOKE_URL;// 下载地址
+// 根据需要配置
+// HashMap&lt;String,String&gt; headers = new HashMap&lt;&gt;();
+// headers.put("apikey", Constant.APP_KEY);
+// xDownloadFile.requestHeaders = headers;
+XHttp.download(xDownloadFile,"/SD/download","meituan.apk", new Callback&lt;String&gt;() {
+    @Override
+    public void onSuccess(String s) {
+        // TODO dosometing
+    }
+
+    @Override
+    public void onDownloadProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
+        super.onDownloadProgress(currentSize, totalSize, progress, networkSpeed);
+        // TODO dosometing
+    }
+});
+</pre>
