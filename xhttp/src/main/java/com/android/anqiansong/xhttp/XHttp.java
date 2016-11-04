@@ -480,7 +480,7 @@ public class XHttp {
                 @Override
                 public void upProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
                     super.upProgress(currentSize, totalSize, progress, networkSpeed);
-                    callback.onUploadProgress(currentSize, totalSize, progress, networkSpeed);
+                    callback.onUploadProgress(currentSize/1024, totalSize/1024, progress, networkSpeed);
                 }
 
                 @Override
@@ -527,7 +527,7 @@ public class XHttp {
                 @Override
                 public void downloadProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
                     super.downloadProgress(currentSize, totalSize, progress, networkSpeed);
-                    callback.onDownloadProgress(currentSize, totalSize, progress, networkSpeed);
+                    callback.onDownloadProgress(currentSize/1024, totalSize/1024, progress, networkSpeed);
                 }
 
                 @Override

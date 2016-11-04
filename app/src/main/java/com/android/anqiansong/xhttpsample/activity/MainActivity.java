@@ -70,6 +70,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     private void getJson() {
         XGet xGet = new XGet();
+        xGet.requestString = "?page=1";
         xGet.requestUrl = Constant.JOKE_URL;
         HashMap<String, String> headers = new HashMap<>();
         headers.put("apikey", Constant.APP_KEY);
@@ -119,4 +120,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onDestroy();
         XHttp.onDestroy(this);
     }
+
 }
