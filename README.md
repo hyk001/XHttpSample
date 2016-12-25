@@ -46,11 +46,11 @@ public abstract class Callback&lt;T&gt; {// 根据需要返回的类型指定泛
 }
 </pre>
 # 注意事项
-在使用XHttp进行网络请求之前,需要调用init(Application)对其进行一次初始化,此 初始化建议在Application中进行,在初始化过程中,对默认配置进行了初始化,如果用户不满足默认参数配置,可以调用对应的方法进行设置, 建议在Application进行全局设置.默认配置中的超时间为15秒, 对Cookie进行了持久化处理.
+在使用XHttp进行网络请求之前,需要调用init(Application)对其进行一次初始化,此 初始化建议在Application中进行,在初始化过程中,对默认配置进行了初始化,如果用户不满足默认参数配置,可以调用对应的方法进行设置, 建议在Application进行全局设置.默认配置中的超时间为15秒, 对Cookie进行了持久化处理.源码没有在继续上传,大家如果需要源码的可以联系我.
 #使用方法
-#gradle引用
+#gradle引用,优化上传文件bug
 <pre>
-compile 'com.android.anqiansong:xhttp:1.0.0'
+compile 'com.android.anqiansong:xhttp:1.0.3'
 </pre>
 #1.在Application中初始化
 <pre>
@@ -261,28 +261,7 @@ XHttp.download(xDownloadFile,"/SD/download","meituan.apk", new Callback&lt;Strin
     }
 });
 </pre>
-#其他注意事项
-在activity中执行onCreate(...) 和 onDestroy(...)时,如果需要增加网络唯一请求标识,以便每个activity在 销毁时取消网络请求减小app负担,建议调用对应的方法.实例:
-<pre>
-public class MainActivity extends Activity{
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-    }
-    
-    
-    .........
-    
-    
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        XHttp.onDestroy(this);
-    }
-}
-</pre>
 #后序
 感谢<h2>jeasonlzy</h2><br>
 引自:<a href="https://github.com/jeasonlzy/okhttp-OkGo">jeasonlzy github地址</a><br>
