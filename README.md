@@ -1,6 +1,9 @@
 #联系方式
 博客地址:<a href="http://blog.csdn.net/qq243223991">http://blog.csdn.net/qq243223991</a><br>
 Github地址:<a href="https://github.com/anqiansong/XHttpSample">https://github.com/anqiansong/XHttpSample</a><br>
+# 版本
+V1.0.0 起始版本<br>
+V1.0.4 修复下载文件bug
 # XHttpSample
 XHttp一个轻量级网络工具类,基于OKGo封装的一个简单、实用的网络请求工具,此工具因继承自OkGo,查看 OkGo便知,不能和OkHttp同时引用, 会导致冲突,在本工具中采用
 是fastjson 1.2.9版本进行json解析的,因此在依赖过程中请勿重复依赖fastjson.
@@ -50,7 +53,7 @@ public abstract class Callback&lt;T&gt; {// 根据需要返回的类型指定泛
 #使用方法
 #gradle引用,优化上传文件bug
 <pre>
-compile 'com.android.anqiansong:xhttp:1.0.3'
+compile 'com.android.anqiansong:xhttp:1.0.4'
 </pre>
 #1.在Application中初始化
 <pre>
