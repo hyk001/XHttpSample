@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSON;
 import com.android.anqiansong.callback.Callback;
 import com.android.anqiansong.request.XBase;
 import com.android.anqiansong.request.XBitmap;
+import com.android.anqiansong.request.XDownloadFile;
 import com.android.anqiansong.request.XGet;
 import com.android.anqiansong.request.XPost;
 import com.android.anqiansong.request.XPostJson;
@@ -223,7 +224,7 @@ public class XHttp {
         try {
             if (!isInit()) return;
 
-            if (xBase instanceof XUploadFile) {// 下载文件
+            if (xBase instanceof XDownloadFile) {// 下载文件
                 downloadFile(xBase, destFileDir, destFileName, callback, tagActivity);
                 return;
             }
@@ -371,15 +372,15 @@ public class XHttp {
      */
     private static void postJson(XBase xBase, final Callback callback, Object tag) {
         try {
-            XPost xPost = (XPost) xBase;
+            XPostJson xPost = (XPostJson) xBase;
             String url = xPost.requestUrl;
             HttpHeaders httpHeaders = getHeaders(xBase);
             PostRequest postRequest = OkGo.post(url).tag(tag).cacheKey(url);
             if (httpHeaders != null) {
                 postRequest.headers(httpHeaders);
             }
-            if (xPost.params != null) {
-                String json = JSON.toJSONString(xPost.params);
+            if (xPost.requestJson != null) {
+                String json = xPost.requestJson;
                 postRequest.upJson(json);
             }
             StringCallback stringCallback = new StringCallback() {
@@ -464,7 +465,7 @@ public class XHttp {
                 postRequest.headers(httpHeaders);
             }
             if (xUploadFile.params != null) {
-                postRequest.params(getParams(xUploadFile));
+                postRequest.params(getUploadFileParams(xUploadFile));
             }
             if (xUploadFile.files != null) {
                 postRequest.params(getFileParams(xUploadFile));
@@ -587,6 +588,26 @@ public class XHttp {
      * @return
      */
     private static HttpParams getParams(XPost xPost) {
+        try {
+            if (xPost.params == null) return null;
+            HttpParams httpParams = new HttpParams();
+            for (String key : xPost.params.keySet()) {
+                Object obj = xPost.params.get(key);
+                httpParams.put(key, String.valueOf(obj));
+            }
+            return httpParams;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    /**
+     * 获取post参数
+     *
+     * @param xPost
+     * @return
+     */
+    private static HttpParams getUploadFileParams(XUploadFile xPost) {
         try {
             if (xPost.params == null) return null;
             HttpParams httpParams = new HttpParams();

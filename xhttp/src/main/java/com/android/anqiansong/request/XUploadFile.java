@@ -9,6 +9,7 @@ import java.util.List;
  * <a href="http://blog.csdn.net/qq243223991">安前松博客</a>
  */
 
-public class XUploadFile extends XPost {
+public class XUploadFile extends XBase {
+    public HashMap<String,Object> params;
     public HashMap<String, List<File>> files;
 }

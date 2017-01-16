@@ -6,4 +6,5 @@ package com.android.anqiansong.request;
  */
 
 public class XDownloadFile extends XBase {
+
 }
