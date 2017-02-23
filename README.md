@@ -50,8 +50,7 @@ public abstract class Callback&lt;T&gt; {// 根据需要返回的类型指定泛
 }
 </pre>
 # 注意事项
-在使用XHttp进行网络请求之前,需要调用init(Application)对其进行一次初始化,此 初始化建议在Application中进行,在初始化过程中,对默认配置进行了初始化,如果用户不满足默认参数配置,可以调用对应的方法进行设置, 建议在Application进行全局设置.默认配置中的超时间为15秒, 对Cookie进行了持久化处理.源码没有在继续上传,大家如果需要源码的可以联系我.
-#使用方法
+在使用XHttp进行网络请求之前,需要调用init(Application)对其进行一次初始化,此 初始化建议在Application中进行,在初始化过程中,对默认配置进行了初始化,如果用户不满足默认参数配置,可以调用对应的方法进行设置, 建议在Application进行全局设置.默认配置中的超时间为15秒, 对Cookie进行了持久化处理.
 #gradle引用,优化上传文件bug
 <pre>
 compile 'com.android.anqiansong:xhttp:1.0.5'
