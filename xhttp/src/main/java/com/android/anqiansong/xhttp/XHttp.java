@@ -547,6 +547,15 @@ public class XHttp {
         }
     }
 
+    /**
+     * 添加拦截器,建议在application中添加
+     * @param interceptor 拦截器
+     */
+    private static ParseInterceptor mInterceptor;
+    public static void addParseInterceptor(ParseInterceptor interceptor){
+        mInterceptor = interceptor;
+    }
+
 
     /**
      * json解析
@@ -557,6 +566,9 @@ public class XHttp {
      */
     private static Object parse(String json, Class type) {
         try {
+            if(mInterceptor!=null){
+                mInterceptor.doParseInterceptor(json);
+            }
             Object obj = JSON.parseObject(json, type);
             return obj;
         } catch (Exception e) {
