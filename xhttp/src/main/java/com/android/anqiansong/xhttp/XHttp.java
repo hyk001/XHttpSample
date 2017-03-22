@@ -64,6 +64,8 @@ public class XHttp {
      */
     private static boolean init = false;
 
+    private static boolean dispatch = true;
+
 
     public static void init(Application application) {
         OkGo.init(application);// 初始化
@@ -303,12 +305,15 @@ public class XHttp {
                 @Override
                 public void onSuccess(String s, Call call, Response response) {
                     Class clzz = TypeTake.getClass(callback);
-                    callback.onSuccess(parse(s, clzz));
+                    Object obj = parse(s, clzz);
+                    if (obj == null||!dispatch) return;
+                    callback.onSuccess(obj);
                 }
 
                 @Override
                 public void onError(Call call, Response response, Exception e) {
                     super.onError(call, response, e);
+                    if (!dispatch) return;
                     ErrorInfo errorInfo = new ErrorInfo();
                     errorInfo.setErrorCode(NetCode.STATE_ERROR);
                     errorInfo.setErrorMessage(NetCode.RESUQST_FAILED);
@@ -344,12 +349,16 @@ public class XHttp {
             StringCallback stringCallback = new StringCallback() {
                 @Override
                 public void onSuccess(String s, Call call, Response response) {
-                    callback.onSuccess(parse(s, TypeTake.getClass(callback)));
+                    Class clzz = TypeTake.getClass(callback);
+                    Object obj = parse(s, clzz);
+                    if (obj == null||!dispatch) return;
+                    callback.onSuccess(obj);
                 }
 
                 @Override
                 public void onError(Call call, Response response, Exception e) {
                     super.onError(call, response, e);
+                    if (!dispatch) return;
                     ErrorInfo errorInfo = new ErrorInfo();
                     errorInfo.setErrorCode(NetCode.STATE_ERROR);
                     errorInfo.setErrorMessage(NetCode.RESUQST_FAILED);
@@ -386,12 +395,16 @@ public class XHttp {
             StringCallback stringCallback = new StringCallback() {
                 @Override
                 public void onSuccess(String s, Call call, Response response) {
-                    callback.onSuccess(parse(s, TypeTake.getClass(callback)));
+                    Class clzz = TypeTake.getClass(callback);
+                    Object obj = parse(s, clzz);
+                    if (obj == null||!dispatch) return;
+                    callback.onSuccess(obj);
                 }
 
                 @Override
                 public void onError(Call call, Response response, Exception e) {
                     super.onError(call, response, e);
+                    if (!dispatch) return;
                     ErrorInfo errorInfo = new ErrorInfo();
                     errorInfo.setErrorCode(NetCode.STATE_ERROR);
                     errorInfo.setErrorMessage(NetCode.RESUQST_FAILED);
@@ -427,12 +440,16 @@ public class XHttp {
             StringCallback stringCallback = new StringCallback() {
                 @Override
                 public void onSuccess(String s, Call call, Response response) {
-                    callback.onSuccess(parse(s, TypeTake.getClass(callback)));
+                    Class clzz = TypeTake.getClass(callback);
+                    Object obj = parse(s, clzz);
+                    if (obj == null||!dispatch) return;
+                    callback.onSuccess(obj);
                 }
 
                 @Override
                 public void onError(Call call, Response response, Exception e) {
                     super.onError(call, response, e);
+                    if (!dispatch) return;
                     ErrorInfo errorInfo = new ErrorInfo();
                     errorInfo.setErrorCode(NetCode.STATE_ERROR);
                     errorInfo.setErrorMessage(NetCode.RESUQST_FAILED);
@@ -475,18 +492,22 @@ public class XHttp {
             StringCallback stringCallback = new StringCallback() {
                 @Override
                 public void onSuccess(String s, Call call, Response response) {
-                    callback.onSuccess(parse(s, TypeTake.getClass(callback)));
+                    Class clzz = TypeTake.getClass(callback);
+                    Object obj = parse(s, clzz);
+                    if (obj == null||!dispatch) return;
+                    callback.onSuccess(obj);
                 }
 
                 @Override
                 public void upProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
                     super.upProgress(currentSize, totalSize, progress, networkSpeed);
-                    callback.onUploadProgress(currentSize/1024, totalSize/1024, progress, networkSpeed);
+                    callback.onUploadProgress(currentSize / 1024, totalSize / 1024, progress, networkSpeed);
                 }
 
                 @Override
                 public void onError(Call call, Response response, Exception e) {
                     super.onError(call, response, e);
+                    if (!dispatch) return;
                     ErrorInfo errorInfo = new ErrorInfo();
                     errorInfo.setErrorCode(NetCode.STATE_ERROR);
                     errorInfo.setErrorMessage(NetCode.RESUQST_FAILED);
@@ -528,7 +549,7 @@ public class XHttp {
                 @Override
                 public void downloadProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
                     super.downloadProgress(currentSize, totalSize, progress, networkSpeed);
-                    callback.onDownloadProgress(currentSize/1024, totalSize/1024, progress, networkSpeed);
+                    callback.onDownloadProgress(currentSize / 1024, totalSize / 1024, progress, networkSpeed);
                 }
 
                 @Override
@@ -549,10 +570,12 @@ public class XHttp {
 
     /**
      * 添加拦截器,建议在application中添加
+     *
      * @param interceptor 拦截器
      */
     private static ParseInterceptor mInterceptor;
-    public static void addParseInterceptor(ParseInterceptor interceptor){
+
+    public static void addParseInterceptor(ParseInterceptor interceptor) {
         mInterceptor = interceptor;
     }
 
@@ -566,8 +589,8 @@ public class XHttp {
      */
     private static Object parse(String json, Class type) {
         try {
-            if(mInterceptor!=null){
-                mInterceptor.doParseInterceptor(json);
+            if (mInterceptor != null) {
+                dispatch = mInterceptor.doParseInterceptor(json);
             }
             Object obj = JSON.parseObject(json, type);
             return obj;
@@ -613,6 +636,7 @@ public class XHttp {
         }
         return null;
     }
+
     /**
      * 获取post参数
      *
